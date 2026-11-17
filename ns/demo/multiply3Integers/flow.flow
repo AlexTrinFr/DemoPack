@@ -1,0 +1,112 @@
+interface demo
+service multiply3Integers (
+    input {
+        String num1;
+        String num2;
+        String num3;
+    }
+    output {
+        String result;
+    }
+)
+properties {
+    favorite: false;
+    deprecated: false;
+    visible: private;
+    reuse: private;
+    stateless: true;
+    cacheResults: false;
+    cacheExpire: 15;
+    prefetch: false;
+    prefetchActivation: 1;
+    pipelineDebug: None;
+    allowedHttpMethods: [TRACE, HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH];
+    maxRetryAttempts: 0;
+    retryInterval: 0;
+    enableAuditing: never;
+    logOn: Error only;
+    includePipeline: never;
+    circuitBreakerEnabled: false;
+    failureEvent: Exception only;
+    timeoutPeriod: 60;
+    cancelThreadOnTimeout: false;
+    failureThreshold: 5;
+    failurePeriod: 60;
+    circuitOpenAction: Throw exception;
+    circuitResetPeriod: 300;
+    concurrencyEnabled: false;
+    maxConcurrentRequests: 20;
+    validateInput: false;
+    validateOutput: false;
+}
+{
+    INVOKE pub.math:multiplyInts {
+        validateInput: false
+        validateOutput: false
+        input {
+            mapSource {
+                String num1;
+                String num2;
+            }
+            copy num1 -> num1;
+            copy num2 -> num2;
+        }
+        output {
+            mapSource {
+                String value;
+            }
+            mapTarget {
+                String intermediateResult;
+            }
+            copy value -> intermediateResult;
+        }
+    }
+    INVOKE pub.math:multiplyInts {
+        validateInput: false
+        validateOutput: false
+        input {
+            mapSource {
+                String intermediateResult;
+                String num3;
+            }
+            mapTarget {
+                String num1;
+                String num2;
+            }
+            copy intermediateResult -> num1;
+            copy num3 -> num2;
+        }
+        output {
+            mapSource {
+                String value;
+            }
+            mapTarget {
+                String result;
+            }
+            copy value -> result;
+            drop `num1`;
+            drop `intermediateResult`;
+            drop `num2`;
+            drop `num3`;
+        }
+    }
+    INVOKE pub.avro:documentToAvro {
+        validateInput: false
+        validateOutput: false
+        input {
+            mapSource {
+                String result;
+            }
+            mapTarget {
+                record document {
+                    allowUnspecifiedFields: true;
+                };
+                String wireFormat;
+                String schemaWriterDocumentTypeName;
+            }
+            copy result -> `document/result`;
+            set `wireFormat` = "binary";
+            set `schemaWriterDocumentTypeName` = "demo:multiply3IntegersResult";
+        }
+    }
+}

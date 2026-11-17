@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<webMethodsTestSuite description="getTwoAddition TestSuite" name="getTwoAdditionTestSuite">
+
+    <webMethodsTestCase description="Success Test: Addition de deux entiers positifs (15 + 27 = 42)" name="success_positive_integers">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="success_positive_integers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_positive_integers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Addition avec entiers negatifs (-5 + -3 = -8)" name="success_negative_integers">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="success_negative_integers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_negative_integers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Mix positif et negatif (100 + -38 = 62)" name="success_mixed_signs">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="success_mixed_signs-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_mixed_signs-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Les deux operandes valent zero (0 + 0 = 0)" name="edge_both_zeros">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="edge_both_zeros-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_both_zeros-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Symmetrie - Int1 et Int2 permutes donnent le meme resultat (7 + 3 = 3 + 7 = 10)" name="edge_commutativity">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="edge_commutativity-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_commutativity-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Grand entier positif (999999999 + 1 = 1000000000)" name="edge_large_number">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="edge_large_number-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_large_number-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Error Test: Int1 non numerique - pub.math:addInts doit lever une exception" name="error_non_numeric_input">
+        <service folder="demo.isl" name="getTwoAddition">
+            <input>
+                <file filename="error_non_numeric_input-input.xml"/>
+            </input>
+            <expected>
+                <file filename="error_non_numeric_input-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+</webMethodsTestSuite>
+

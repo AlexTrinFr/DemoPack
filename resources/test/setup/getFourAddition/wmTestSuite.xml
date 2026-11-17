@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webMethodsTestSuite description="getFourAddition TestSuite" name="getFourAdditionTestSuite">
+
+    <webMethodsTestCase description="Success Test: Addition de quatre entiers positifs (10 + 20 + 30 + 40 = 100)" name="success_positive_integers">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="success_positive_integers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_positive_integers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Addition avec des entiers negatifs (-5 + -3 + -2 + -1 = -11)" name="success_negative_integers">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="success_negative_integers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_negative_integers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Mix positifs et negatifs (100 + -25 + 50 + -25 = 100)" name="success_mixed_signs">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="success_mixed_signs-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_mixed_signs-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Les quatre operandes valent zero (0 + 0 + 0 + 0 = 0)" name="edge_all_zeros">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="edge_all_zeros-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_all_zeros-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Un seul operande non-nul (0 + 0 + 0 + 42 = 42)" name="edge_single_nonzero">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="edge_single_nonzero-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_single_nonzero-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Grands entiers positifs (999998 + 1 + 1 + 0 = 1000000)" name="edge_large_numbers">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="edge_large_numbers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_large_numbers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Error Test: Entree non numerique - pub.math:addInts doit lever une exception" name="error_non_numeric_input">
+        <service folder="demo.isl" name="getFourAddition">
+            <input>
+                <file filename="error_non_numeric_input-input.xml"/>
+            </input>
+            <expected>
+                <file filename="error_non_numeric_input-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+</webMethodsTestSuite>

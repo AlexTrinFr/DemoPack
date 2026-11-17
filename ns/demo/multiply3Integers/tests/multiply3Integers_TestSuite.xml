@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webMethodsTestSuite description="multiply3Integers TestSuite" name="multiply3IntegersTestSuite">
+    <webMethodsTestCase description="Success Test: 3 x 4 x 5 = 60" name="success_test1">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/success_test1-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/success_test1-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+    <webMethodsTestCase description="Success Test: 7 x 1 x 9 = 63 (identity element)" name="success_test2">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/success_test2-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/success_test2-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+    <webMethodsTestCase description="Edge Test: multiply by zero gives 0" name="edge_zero">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/edge_zero-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/edge_zero-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+    <webMethodsTestCase description="Edge Test: all same values 4 x 4 x 4 = 64" name="edge_same">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/edge_same-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/edge_same-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+    <webMethodsTestCase description="Edge Test: large numbers 100 x 200 x 300 = 6000000" name="edge_large">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/edge_large-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/edge_large-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+    <webMethodsTestCase description="Edge Test: negative number -3 x 4 x 5 = -60" name="edge_negative">
+        <service folder="demo" name="multiply3Integers">
+            <input>
+                <file filename="tests/edge_negative-input.xml"/>
+            </input>
+            <expected>
+                <file filename="tests/edge_negative-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+</webMethodsTestSuite>

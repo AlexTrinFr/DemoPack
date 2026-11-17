@@ -1,0 +1,58 @@
+interface demo.isl
+service productPlusC (
+    input {
+        String IntA;
+        String IntB;
+        String IntC;
+    }
+    output {
+        String result;
+    }
+)
+properties {
+    visible: public;
+    reuse: public;
+    stateless: true;
+    cacheResults: false;
+    cacheExpire: 15;
+    prefetch: false;
+    prefetchActivation: 1;
+    allowedHttpMethods: [TRACE, HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH];
+    maxRetryAttempts: 0;
+    retryInterval: 0;
+    enableAuditing: never;
+    logOn: Error only;
+    includePipeline: never;
+    validateInput: false;
+    validateOutput: false;
+}
+{
+    INVOKE pub.math:multiplyInts {
+        validateInput: false
+        validateOutput: false
+        input {
+            copy `IntA` -> `num1`;
+            copy `IntB` -> `num2`;
+        }
+        output {
+            mapTarget {
+                String partialProduct;
+            }
+            copy `value` -> `partialProduct`;
+        }
+    }
+    INVOKE pub.math:addInts {
+        validateInput: false
+        validateOutput: false
+        input {
+            copy `partialProduct` -> `num1`;
+            copy `IntC` -> `num2`;
+        }
+        output {
+            mapTarget {
+                String result;
+            }
+            copy `value` -> `result`;
+        }
+    }
+}

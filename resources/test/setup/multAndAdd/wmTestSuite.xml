@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webMethodsTestSuite description="multAndAdd TestSuite" name="multAndAddTestSuite">
+
+    <webMethodsTestCase description="Success Test: Cas nominal (3 x 4) + 5 = 17" name="success_nominal">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="success_nominal-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_nominal-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Multiplicande negatif (-2 x 6) + 10 = -2" name="success_negative_factor">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="success_negative_factor-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_negative_factor-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Success Test: Addend negatif (5 x 5) + (-10) = 15" name="success_negative_addend">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="success_negative_addend-input.xml"/>
+            </input>
+            <expected>
+                <file filename="success_negative_addend-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Multiplication par zero (0 x 99) + 7 = 7" name="edge_multiply_by_zero">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="edge_multiply_by_zero-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_multiply_by_zero-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Addend zero (3 x 4) + 0 = 12" name="edge_addend_zero">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="edge_addend_zero-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_addend_zero-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Tous les operandes a zero (0 x 0) + 0 = 0" name="edge_all_zeros">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="edge_all_zeros-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_all_zeros-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Edge Test: Grands entiers (1000 x 1000) + 1 = 1000001" name="edge_large_numbers">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="edge_large_numbers-input.xml"/>
+            </input>
+            <expected>
+                <file filename="edge_large_numbers-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+    <webMethodsTestCase description="Error Test: Entree non numerique - pub.math doit lever une exception" name="error_non_numeric_input">
+        <service folder="demo.isl" name="multAndAdd">
+            <input>
+                <file filename="error_non_numeric_input-input.xml"/>
+            </input>
+            <expected>
+                <file filename="error_non_numeric_input-result.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+
+</webMethodsTestSuite>
